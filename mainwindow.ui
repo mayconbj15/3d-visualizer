@@ -37,6 +37,19 @@
      <string>Exit</string>
     </property>
    </widget>
+   <widget class="QCheckBox" name="checkBox">
+    <property name="geometry">
+     <rect>
+      <x>240</x>
+      <y>200</y>
+      <width>70</width>
+      <height>17</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>CheckBox</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -77,4 +90,7 @@
    </hints>
   </connection>
  </connections>
+ <slots>
+  <slot>toggleBackgroundColor(bool)</slot>
+ </slots>
 </ui>
