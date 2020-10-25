@@ -92,6 +92,21 @@ class Object:
                 glVertex3fv(self.vertices[objectVertices])
         glEnd()
 
+    def render_object_triangles(self):
+        glBegin(GL_TRIANGLES)
+        for objectFace in self.faces:
+            x = 0
+            for objectVertices in objectFace:
+                x+=1
+                if x < len(self.colors):
+                    if self.rgba:
+                        glColor4fv(self.colors[x])
+                    else:
+                        glColor3fv(self.colors[x])
+                    
+                glVertex3fv(self.vertices[objectVertices])
+        glEnd()
+
 def normalize(old_string):
     #todo: retirar espaços do fim
 

@@ -24,14 +24,21 @@ def solidCube():
             glVertex3fv(cubeVertices[cubeVertex])
     glEnd()
 
+<<<<<<< HEAD
 def main(obj_dir):
+=======
+def initOpenGL(display):
+    gluPerspective(45, (display[0]/display[1]), 0.1, 50.0)
+    glTranslatef(0.0, 0.0, -5)
+    glShadeModel(GL_SMOOTH)
+
+def main():
+>>>>>>> 4584e8b765e4ec4679fb070c95d896d1b836709b
     pg.init()
     display = (800, 600)
     pg.display.set_mode(display, DOUBLEBUF|OPENGL)
 
-    gluPerspective(45, (display[0]/display[1]), 0.1, 50.0)
-
-    glTranslatef(0.0, 0.0, -5)
+    initOpenGL(display)
     
     object_3d = ob.Object(obj_dir)
     
