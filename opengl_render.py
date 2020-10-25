@@ -1,6 +1,21 @@
 from OpenGL.GL import *
 from OpenGL.GLU import *
 
+def render_object(object_3d):
+    #todo: colocar botão pra deixar o objeto vazado. ex: cube.off
+    if object_3d.primitive == 'LINES':
+        #line
+        pass
+    elif object_3d.primitive == 'TRIANGLES':
+        #triangle
+        render_object_triangles(object_3d)
+    elif object_3d.primitive == 'QUADS':
+        #quads
+        render_object_quads(object_3d)
+    elif object_3d.primitive == 'POLYGON':
+        #polygon
+        render_object_polygon(object_3d)
+
 def render_object_quads(object_3d):
         glBegin(GL_QUADS)
         for objectFace in object_3d.faces:

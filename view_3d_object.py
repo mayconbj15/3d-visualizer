@@ -48,7 +48,7 @@ def main(obj_dir):
         glRotatef(1, 1, 1, 1)
         glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT)
         
-        op_render.render_object_polygon(object_3d)
+        op_render.render_object(object_3d)
         
         #solidCube()
         #wireCube()

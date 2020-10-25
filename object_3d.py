@@ -5,6 +5,7 @@ class Object:
         self.faces = []
         self.colors = []
         self.rgba = False
+        self.primitive = 'POLYGON'
 
         self.read_file(filepath)
 
@@ -30,6 +31,8 @@ class Object:
         n_vertices = int(infos[0])
         n_faces = int(infos[1])
         n_edges = int(infos[2])
+
+        self.set_primitive(n_faces, n_edges)
 
         vertices_lines = lines[2:(2+n_vertices)]
 
@@ -65,7 +68,13 @@ class Object:
                     colors.append(float(c))
                 
                 self.colors.append(tuple(colors))
-
+        
+    def set_primitive(self, n_faces, n_edges):
+        if n_edges != 0:
+            primitive = n_edges % n_faces 
+            if primitive == 0:
+                self.primitive = 'QUADS'  
+        
 def normalize(old_string):
     #todo: retirar espaços do fim
 
