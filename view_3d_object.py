@@ -24,7 +24,7 @@ def solidCube():
             glVertex3fv(cubeVertices[cubeVertex])
     glEnd()
 
-def main():
+def main(obj_dir):
     pg.init()
     display = (800, 600)
     pg.display.set_mode(display, DOUBLEBUF|OPENGL)
@@ -33,7 +33,7 @@ def main():
 
     glTranslatef(0.0, 0.0, -5)
     
-    object_3d = ob.Object('./objects_files/color_cube.off')
+    object_3d = ob.Object(obj_dir)
     
     while True:
         for event in pg.event.get():
@@ -51,4 +51,4 @@ def main():
         pg.time.wait(10)
 
 if __name__ == "__main__":
-    main()
+    main(obj_dir)

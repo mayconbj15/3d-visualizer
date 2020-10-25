@@ -1,6 +1,8 @@
 import pygame
 import pygame_gui
 import view_3d_object as view3d
+from tkinter import *
+from tkinter import filedialog
 
 pygame.init()
 display = (400, 600)
@@ -40,6 +42,7 @@ chooseShaderRightButton = pygame_gui.elements.UIButton(
 
 clock = pygame.time.Clock()
 is_running = True
+obj_dir = './objects_files/cube.off'
 
 while is_running:
     time_delta = clock.tick(60) / 1000.0
@@ -51,7 +54,14 @@ while is_running:
             if event.user_type == pygame_gui.UI_BUTTON_PRESSED:
                 if event.ui_element == showButton:
                     # view3d.main()
-                    view3d.main()
+                    view3d.main(obj_dir)
+                elif event.ui_element == openFileButton:
+                    root = Tk()
+                    root.withdraw() # esconder tela do tk
+                    obj_dir = filedialog.askopenfilename(
+                        initialdir="./objects_files",
+                        title="Select a object file",
+                    )
 
         manager.process_events(event)
 
