@@ -5,6 +5,7 @@ from OpenGL.GL import *
 from OpenGL.GLU import *
 
 import object_3d as ob
+import opengl_render as op_render
 
 cubeVertices = [(1,1,1),(1,1,-1),(1,-1,-1),(1,-1,1),(-1,1,1),(-1,-1,-1),(-1,-1,1),(-1,1,-1)]
 cubeEdges = [(0,1),(0,3),(0,4),(1,2),(1,7),(2,5),(2,3),(3,6),(4,6),(4,7),(5,6),(5,7)]
@@ -40,7 +41,11 @@ def main():
 
     initOpenGL(display)
     
+<<<<<<< HEAD
     object_3d = ob.Object(obj_dir)
+=======
+    object_3d = ob.Object('./objects_files/hdodec.off')
+>>>>>>> 0d519f0999255080045678366d7e77ffe9bceec6
     
     while True:
         for event in pg.event.get():
@@ -51,7 +56,8 @@ def main():
         glRotatef(1, 1, 1, 1)
         glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT)
         
-        object_3d.render_object_quads()
+        op_render.render_object_polygon(object_3d)
+        
         #solidCube()
         #wireCube()
         pg.display.flip()
