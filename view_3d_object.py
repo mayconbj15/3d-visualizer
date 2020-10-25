@@ -4,9 +4,11 @@ from pygame.locals import *
 from OpenGL.GL import *
 from OpenGL.GLU import *
 
-cubeVertices = ((1,1,1),(1,1,-1),(1,-1,-1),(1,-1,1),(-1,1,1),(-1,-1,-1),(-1,-1,1),(-1,1,-1))
-cubeEdges = ((0,1),(0,3),(0,4),(1,2),(1,7),(2,5),(2,3),(3,6),(4,6),(4,7),(5,6),(5,7))
-cubeQuads = ((0,3,6,4),(2,5,6,3),(1,2,5,7),(1,0,4,7),(7,4,6,5),(2,3,0,1))
+import object_3d as ob
+
+cubeVertices = [(1,1,1),(1,1,-1),(1,-1,-1),(1,-1,1),(-1,1,1),(-1,-1,-1),(-1,-1,1),(-1,1,-1)]
+cubeEdges = [(0,1),(0,3),(0,4),(1,2),(1,7),(2,5),(2,3),(3,6),(4,6),(4,7),(5,6),(5,7)]
+cubeQuads = [(0,3,6,4),(2,5,6,3),(1,2,5,7),(1,0,4,7),(7,4,6,5),(2,3,0,1)]
 
 def wireCube():
     glBegin(GL_LINES)
@@ -30,7 +32,9 @@ def main():
     gluPerspective(45, (display[0]/display[1]), 0.1, 50.0)
 
     glTranslatef(0.0, 0.0, -5)
-
+    
+    object_3d = ob.Object('./objects_files/hdodec.off')
+    
     while True:
         for event in pg.event.get():
             if event.type == pg.QUIT:
@@ -39,8 +43,10 @@ def main():
 
         glRotatef(1, 1, 1, 1)
         glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT)
+        
+        object_3d.render_object_quads()
         #solidCube()
-        wireCube()
+        #wireCube()
         pg.display.flip()
         pg.time.wait(10)
 
