@@ -33,7 +33,7 @@ def main():
 
     glTranslatef(0.0, 0.0, -5)
     
-    object_3d = ob.Object('./objects_files/hdodec.off')
+    object_3d = ob.Object('./objects_files/color_cube.off')
     
     while True:
         for event in pg.event.get():

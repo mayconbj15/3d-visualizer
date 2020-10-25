@@ -6,6 +6,8 @@ class Object:
         self.filepath = filepath
         self.vertices = []
         self.faces = []
+        self.colors = []
+        self.rgba = False
 
         self.read_file(filepath)
 
@@ -46,17 +48,40 @@ class Object:
             face_line = normalize(face_line)
 
             face = face_line.split(' ')
-
+          
             tuples = []
             for f in face[1:int(face[0])+1]:
                 tuples.append(int(f))
                 
             self.faces.append(tuple(tuples))
 
+            faces_length = int(face[0])+1
+            color_length = len(face) - faces_length
+            
+            if color_length == 4:
+                self.rgba = True
+
+            if len(face) > faces_length:
+                #get colors
+                face_colors = face[faces_length:len(face)]
+                colors = []
+                for c in face_colors:
+                    colors.append(float(c))
+                
+                self.colors.append(tuple(colors))
+
     def render_object_quads(self):
         glBegin(GL_QUADS)
         for objectFace in self.faces:
+            x = 0
             for objectVertices in objectFace:
+                x+=1
+                if x < len(self.colors):
+                    if self.rgba:
+                        glColor4fv(self.colors[x])
+                    else:
+                        glColor3fv(self.colors[x])
+                    
                 glVertex3fv(self.vertices[objectVertices])
         glEnd()
 
