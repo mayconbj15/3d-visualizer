@@ -1,6 +1,3 @@
-from OpenGL.GL import *
-from OpenGL.GLU import *
-
 class Object:
     def __init__(self, filepath):
         self.filepath = filepath
@@ -14,7 +11,6 @@ class Object:
     def read_file(self, filepath):
         #todo: ignorar os comments do começo do arquivo
         #todo: tratar espaço entre os parametros. ex: hdodec.off
-        #todo: pegar as cores do .off
         off = open(filepath, 'r')
 
         lines = off.readlines()
@@ -69,43 +65,6 @@ class Object:
                     colors.append(float(c))
                 
                 self.colors.append(tuple(colors))
-
-    def render_object_quads(self):
-        glBegin(GL_QUADS)
-        for objectFace in self.faces:
-            x = 0
-            for objectVertices in objectFace:
-                x+=1
-                if x < len(self.colors):
-                    if self.rgba:
-                        glColor4fv(self.colors[x])
-                    else:
-                        glColor3fv(self.colors[x])
-                    
-                glVertex3fv(self.vertices[objectVertices])
-        glEnd()
-
-    def render_object_lines(self):
-        glBegin(GL_LINES)
-        for objectFace in self.faces:
-            for objectVertices in objectFace:
-                glVertex3fv(self.vertices[objectVertices])
-        glEnd()
-
-    def render_object_triangles(self):
-        glBegin(GL_TRIANGLES)
-        for objectFace in self.faces:
-            x = 0
-            for objectVertices in objectFace:
-                x+=1
-                if x < len(self.colors):
-                    if self.rgba:
-                        glColor4fv(self.colors[x])
-                    else:
-                        glColor3fv(self.colors[x])
-                    
-                glVertex3fv(self.vertices[objectVertices])
-        glEnd()
 
 def normalize(old_string):
     #todo: retirar espaços do fim
