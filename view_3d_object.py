@@ -25,27 +25,19 @@ def solidCube():
             glVertex3fv(cubeVertices[cubeVertex])
     glEnd()
 
-<<<<<<< HEAD
-def main(obj_dir):
-=======
 def initOpenGL(display):
     gluPerspective(45, (display[0]/display[1]), 0.1, 50.0)
     glTranslatef(0.0, 0.0, -5)
     glShadeModel(GL_SMOOTH)
 
-def main():
->>>>>>> 4584e8b765e4ec4679fb070c95d896d1b836709b
+def main(obj_dir):
     pg.init()
     display = (800, 600)
     pg.display.set_mode(display, DOUBLEBUF|OPENGL)
 
     initOpenGL(display)
     
-<<<<<<< HEAD
     object_3d = ob.Object(obj_dir)
-=======
-    object_3d = ob.Object('./objects_files/hdodec.off')
->>>>>>> 0d519f0999255080045678366d7e77ffe9bceec6
     
     while True:
         for event in pg.event.get():
