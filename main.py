@@ -5,24 +5,28 @@ import view_3d_object as view3d
 pygame.init()
 display = (400, 600)
 
+manager = pygame_gui.UIManager((800, 600), './themes/theme.json')
+manager.ui_theme.load_theme('./themes/theme.json')
+
 pygame.display.set_caption("Quick Start")
 window_surface = pygame.display.set_mode(display)
 
 background = pygame.Surface(display)
-background.fill(pygame.Color("#000000"))
+background.fill(pygame.Color("#2D3947"))
 
-manager = pygame_gui.UIManager(display)
-
-hello_button = pygame_gui.elements.UIButton(
-    relative_rect=pygame.Rect((150, 170), (100, 50)), text="Show", manager=manager
+showButton = pygame_gui.elements.UIButton(    
+    relative_rect=pygame.Rect((150, 170), (100, 50)), 
+    text="Show", 
+    manager=manager, 
 )
-
 openFileButton = pygame_gui.elements.UIButton(
     relative_rect=pygame.Rect((150, 240), (100, 50)), text="Open File", manager=manager
 )
 
 shaderLabel = pygame_gui.elements.UILabel(
-    relative_rect=pygame.Rect((100, 310), (200, 50)), text="Choose a shader:", manager=manager
+    relative_rect=pygame.Rect((100, 310), (200, 50)),
+    text="Choose a shader:",
+    manager=manager,
 )
 
 chooseShaderLeftButton = pygame_gui.elements.UIButton(
@@ -45,8 +49,8 @@ while is_running:
 
         if event.type == pygame.USEREVENT:
             if event.user_type == pygame_gui.UI_BUTTON_PRESSED:
-                if event.ui_element == hello_button:
-                    #view3d.main()                    
+                if event.ui_element == showButton:
+                    # view3d.main()
                     view3d.main()
 
         manager.process_events(event)
